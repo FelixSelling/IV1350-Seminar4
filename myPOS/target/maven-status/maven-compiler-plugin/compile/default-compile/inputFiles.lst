@@ -1,0 +1,12 @@
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/controller/Controller.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/model/Sale.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/integration/CashRegister.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/integration/Printer.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/integration/ItemRegister.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/model/Receipt.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/integration/InventorySystem.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/view/View.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/model/CashPayment.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/startup/Main.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/model/dto/ItemDTO.java
+/Users/felixselling/Code/myPOS/src/main/java/se/kth/iv1350/felixselling/mypos/integration/AccountingSystem.java
