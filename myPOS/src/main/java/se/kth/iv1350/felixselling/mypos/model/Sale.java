@@ -1,6 +1,9 @@
 package se.kth.iv1350.felixselling.mypos.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import se.kth.iv1350.felixselling.mypos.model.dto.ItemDTO;
 
 /**
@@ -11,6 +14,7 @@ public class Sale {
     private ItemDTO[] itemDTOList;
     private int[] itemQuantityList;
     private Receipt receipt;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     public CashPayment cashPayment;
 
@@ -98,6 +102,7 @@ public class Sale {
      */
     public void completeSale() {
         createReceipt();
+        notifyObservers();
     }
 
     private void createReceipt() {
@@ -111,5 +116,20 @@ public class Sale {
      */
     public Receipt getReceipt() {
         return receipt;
+    }
+
+    private void notifyObservers() {
+        for (SaleObserver obs : saleObservers) {
+            obs.onCompleteSale(receipt.getCashPayment().getTotalIncVat());
+        }
+    }
+
+    /**
+     * The specified observer will be notived when the sale is completed.
+     * 
+     * @param observer The observer to notify.
+     */
+    public void addSaleObservers(List<SaleObserver> observers) {
+        saleObservers.addAll(observers);
     }
 }

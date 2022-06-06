@@ -9,6 +9,7 @@ import se.kth.iv1350.felixselling.mypos.model.dto.ItemDTO;
  * test the flow of operations.
  */
 public class View {
+    private Controller contr;
 
     /**
      * Constructor for the view
@@ -16,9 +17,9 @@ public class View {
      * @param contr Reference to the controller.
      */
     public View(Controller contr) {
-        // initiate sale
-        System.out.println("\nStart Sale...");
-        contr.startSale();
+        this.contr = contr;
+        contr.addSaleObserver(new TotalRevenueView());
+        contr.addSaleObserver(new TotalRevenueFileView());
     }
 
     /**
@@ -27,6 +28,9 @@ public class View {
      * @param contr Reference to the controller.
      */
     public void testExecution(Controller contr) {
+        // initiate sale
+        System.out.println("\nStart Sale...");
+        contr.startSale();
         // scan items
         int[] scanItemList = { 12345, 11111, 123456789, 54321, 99999, 11111 };
 

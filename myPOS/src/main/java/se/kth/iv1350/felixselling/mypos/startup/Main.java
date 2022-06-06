@@ -12,5 +12,6 @@ public class Main {
         Controller contr = new Controller();
         View view = new View(contr);
         view.testExecution(contr);
+        view.testExecution(contr);
     }
 }

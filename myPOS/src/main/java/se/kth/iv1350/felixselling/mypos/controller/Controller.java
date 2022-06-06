@@ -1,9 +1,11 @@
 package se.kth.iv1350.felixselling.mypos.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import se.kth.iv1350.felixselling.mypos.integration.*;
 import se.kth.iv1350.felixselling.mypos.model.Sale;
+import se.kth.iv1350.felixselling.mypos.model.SaleObserver;
 import se.kth.iv1350.felixselling.mypos.model.dto.ItemDTO;
 
 /**
@@ -18,6 +20,7 @@ public class Controller {
     private CashRegister cashRegister;
     private ItemRegister itemRegister;
     private Printer printer;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Constructor for Controller
@@ -36,6 +39,7 @@ public class Controller {
      */
     public void startSale() {
         currentSale = new Sale();
+        currentSale.addSaleObservers(saleObservers);
     }
 
     /**
@@ -105,5 +109,9 @@ public class Controller {
      */
     public double getChange() {
         return currentSale.cashPayment.getChange();
+    }
+
+    public void addSaleObserver(SaleObserver obs) {
+        saleObservers.add(obs);
     }
 }
