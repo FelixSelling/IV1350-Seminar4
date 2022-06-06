@@ -1,6 +1,7 @@
 package se.kth.iv1350.felixselling.mypos.view;
 
 import se.kth.iv1350.felixselling.mypos.controller.Controller;
+import se.kth.iv1350.felixselling.mypos.controller.ScanItemFailedException;
 import se.kth.iv1350.felixselling.mypos.model.dto.ItemDTO;
 
 /**
@@ -27,21 +28,17 @@ public class View {
      */
     public void testExecution(Controller contr) {
         // scan items
-        System.out.println("\nScaning item...");
-        printItemDTO(contr.scanItem(12345, 1));
-        System.out.println("Running total (inc VAT): " + contr.getRunningTotalIncludingVAT());
+        int[] scanItemList = { 12345, 11111, 123456789, 54321, 99999, 11111 };
 
-        System.out.println("\nScaning item...");
-        printItemDTO(contr.scanItem(11111, 1));
-        System.out.println("Running total (inc VAT): " + contr.getRunningTotalIncludingVAT());
-
-        System.out.println("\nScaning item...");
-        printItemDTO(contr.scanItem(54321, 1));
-        System.out.println("Running total (inc VAT): " + contr.getRunningTotalIncludingVAT());
-
-        System.out.println("\nScaning item...");
-        printItemDTO(contr.scanItem(11111, 1));
-        System.out.println("Running total (inc VAT): " + contr.getRunningTotalIncludingVAT());
+        for (int i : scanItemList) {
+            try {
+                System.out.println("\nScaning item...");
+                printItemDTO(contr.scanItem(i, 1));
+                System.out.println("Running total (inc VAT): " + contr.getRunningTotalIncludingVAT());
+            } catch (ScanItemFailedException scanItemFailedException) {
+                System.out.println(scanItemFailedException.getMessage());
+            }
+        }
 
         // end sale
         contr.endsale();
@@ -63,5 +60,3 @@ public class View {
         System.out.println("VAT Rate: " + item.getVatRate() + "%");
     }
 }
-
-

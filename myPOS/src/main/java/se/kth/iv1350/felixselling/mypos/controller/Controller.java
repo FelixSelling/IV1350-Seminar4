@@ -43,10 +43,22 @@ public class Controller {
      *                       the correct item in the database
      * @param quantity       Amount of the item currently scanned
      * @return Information on the item retrieved from external database.
+     * @throws ScanItemFailedException Thrown if method encounters exception that
+     *                                 stops the method from doing its task.
      */
-    public ItemDTO scanItem(int itemIdentifier, int quantity) {
-        ItemDTO item = itemRegister.getItemData(itemIdentifier);
-        currentSale.addItem(item, quantity);
+    public ItemDTO scanItem(int itemIdentifier, int quantity) throws ScanItemFailedException {
+
+        ItemDTO item = null;
+        try {
+            item = itemRegister.getItemData(itemIdentifier);
+            currentSale.addItem(item, quantity);
+        } catch (ItemNotFoundException itemNotFoundExeption) {
+            throw new ScanItemFailedException("Item with ItemID "
+                    + itemNotFoundExeption.getItemIdentifierForItemNotFound() + " could not be found.");
+        } catch (DatabaseConnectionFailureException databaseConnectionFailureException) {
+            throw new ScanItemFailedException(
+                    "Could not connect to database, please check internet connection of POS-station.");
+        }
         return item;
     }
 

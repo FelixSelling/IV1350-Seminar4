@@ -17,7 +17,7 @@ public class AccountingSystem {
      * @param sale The sale data that is sent.
      */
     public void sendSaleInformation(Sale sale) {
-        System.out.println("\nSending sale information to external accounting system..");
+        System.out.println("\nSending sale information to external accounting system...");
     }
 
 }
